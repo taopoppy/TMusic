@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'taopoppy';  /* project id 1085003 */
+  src: url('//at.alicdn.com/t/font_1085003_tuiu8m65zkl.eot');
+  src: url('//at.alicdn.com/t/font_1085003_tuiu8m65zkl.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1085003_tuiu8m65zkl.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1085003_tuiu8m65zkl.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1085003_tuiu8m65zkl.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1085003_tuiu8m65zkl.svg#iconfont') format('svg');
+}
+
+/* 默认的图标样式 */
+.iconfont {
+  font-family: 'taopoppy';
+  color: #000;
+  font-size: 50rpx
+}
+
+/* 播放图标 */
+.icon-play::before {
+  content: '\e624'
+}
+
+/* 用户图标 */
+.icon-user::before {
+  content: '\e625'
+}
+
+/* 暂停图标 */
+.icon-pause::before {
+  content: '\e624'
+}
+
+/* 上一首图标 */
+.icon-left::before {
+  content: '\e600'
+}
+
+/* 下一首图标 */
+.icon-right::before {
+  content: '\e601'
+}

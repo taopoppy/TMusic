@@ -1,0 +1,2 @@
+<!--index.wxml-->
+<t-banner bannerData="{{bannerData}}"></t-banner>

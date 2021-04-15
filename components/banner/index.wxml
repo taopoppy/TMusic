@@ -1,0 +1,13 @@
+<!--components/banner/index.wxml-->
+<swiper
+  indicator-dots="{{true}}"
+  autoplay="{{true}}"
+  indicator-active-color="1500"
+  duration="500"
+>
+  <block wx:for="{{bannerData}}" wx:key="index">
+    <swiper-item>
+      <image class="index-banner" src="{{item.pic}}" mode="widthFix"></image>
+    </swiper-item>
+  </block>
+</swiper>

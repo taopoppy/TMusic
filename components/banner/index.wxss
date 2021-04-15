@@ -1,0 +1,5 @@
+/* components/banner/index.wxss */
+.index-banner {
+  width: 100%;
+  height: 100%;
+}
