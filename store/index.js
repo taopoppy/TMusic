@@ -1,29 +1,30 @@
 module.exports = {
   // 获取存储
-  getItem(key, module_name) {
-    if(module_name) {
-      let value  = this.getItem(module_name)
-      if(value) {
-        return value[key]
-      }
-      return ""
-    } else {
-      return wx.getStorageSync(key)
+  getItem(key) {
+    let val = wx.getStorageSync(key)
+    if(Date.parse(new Date()) - val.expires >= 0) {
+      this.remove(key)
+      return ''
     }
+    return val
   },
 
   // 设置存储
-  setItem(key, value, module_name) {
-    if(module_name) {
-      let module_name_info = this.getItem(module_name)
-      module_name_info[key] = value
-      wx.setStorageSync(module_name, module_name_info)
-    } else {
-      wx.setStorageSync(key, value)
+  setItem(key, value) {
+    let val = {
+      expires: Date.parse(new Date()) + 1296000000, // 过期时间为15天
+      content: value
     }
+    wx.setStorageSync(key, val)
   },
 
-  // 清除缓存
+
+  // 移除指定缓存
+  remove(key) {
+    wx.removeStorageSync(key)
+  },
+
+  // 清除所有缓存
   clear() {
     wx.clearStorageSync()
   }
