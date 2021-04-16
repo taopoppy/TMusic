@@ -1,2 +1,10 @@
 <!--index.wxml-->
-<t-banner bannerData="{{bannerData}}"></t-banner>
+<view>
+  <t-banner bannerData="{{bannerData}}"></t-banner>
+
+  <view class="playlist-container">
+    <block wx:for="{{recommendData}}" wx:key="index">
+      <t-playlist data="{{item}}"></t-playlist>
+    </block>
+  </view>
+</view>

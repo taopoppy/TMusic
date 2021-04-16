@@ -26,7 +26,12 @@ App({
     // 轮播图数据
     bannerData: {
       expires: 0,
-      bannerData: []
+      content: []
+    },
+    // 推荐歌单
+    recommendList: {
+      expires: 0,
+      content: []
     }
   }
 })

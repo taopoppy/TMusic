@@ -8,6 +8,10 @@ module.exports = {
   },
   // 搜索
   search: function(keyword) {
-    return `${baseUrl}/search?keywords=${keyword}`
+    return `${baseUrl}/search`
+  },
+  // 推荐歌单
+  personalized: function() {
+    return `${baseUrl}/personalized`
   }
 }

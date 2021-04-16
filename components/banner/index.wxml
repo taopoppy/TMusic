@@ -1,9 +1,8 @@
 <!--components/banner/index.wxml-->
 <swiper
-  indicator-dots="{{true}}"
   autoplay="{{true}}"
-  indicator-active-color="1500"
   duration="500"
+  circular="{{true}}"
 >
   <block wx:for="{{bannerData}}" wx:key="index">
     <swiper-item>

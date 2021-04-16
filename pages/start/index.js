@@ -62,8 +62,8 @@ Page({
     },1000)
 
     // 获取轮播图数据
-    let bannerData = await getData.getBannerData(app)
-    console.log(bannerData)
+    await getData.getBannerData(app)
+    await getData.getRecommendList(app)
   },
   // 进入主页
   timeTap:function() {

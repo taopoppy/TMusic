@@ -2,5 +2,6 @@
   "usingComponents": {
     "t-banner": "/components/banner/index",
     "t-playlist":"/components/playlist/index"
-  }
+  },
+  "enablePullDownRefresh": true
 }
