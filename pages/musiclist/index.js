@@ -13,7 +13,7 @@ Page({
     let res = await getData.getPlayListDetail(options.playlistId)
     if(res!== null) {
       this.setData({
-        listInfo: res.playlist
+        listInfo: 'playlist' in res ? res.playlist: res
       })
     }
   },
