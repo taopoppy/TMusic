@@ -13,5 +13,9 @@ module.exports = {
   // 推荐歌单
   personalized: function() {
     return `${baseUrl}/personalized`
+  },
+  // 歌单详情
+  playlistDetail: function() {
+    return `${baseUrl}/playlist/detail`
   }
 }

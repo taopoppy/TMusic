@@ -1,15 +1,16 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
-    "pages/start/index"
+    "pages/start/index",
+    "pages/musiclist/index",
+    "pages/player/index"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "TMusic",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "darkmode": true,
-  "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

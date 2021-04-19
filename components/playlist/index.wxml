@@ -1,7 +1,7 @@
 <!--components/playlist/index.wxml-->
 
-<view class="playlist-container">
+<view class="playlist-container" catch:tap="goToMusicList">
   <image src="{{data.picUrl}}" class="playlist-img"></image>
-  <text class="playlist-playcount">{{data.playCount}}</text>
+  <text class="playlist-playcount">{{playCount}}</text>
   <view class="playlist-name">{{data.name}}</view>
 </view>

@@ -1,23 +1,23 @@
 // app.js
-const request = require('./http/request.js')
-const Api = require('./http/api.js')
 App({
-  // // 向App上挂载Api
-  // Api,
-  // // 向App上挂载get方法
-  // get: request.fetch,
-  // // 向App上挂载post方法
-  // post: (url, data, option) => {
-  //   request.fetch(url, data, option)
-  // },
   // 启动                 
   onLaunch() {
     wx.redirectTo({
       url: '/pages/start/index',
     })
   },
+  // 设置播放音乐的ID
+  setPlayMusicId(musicId) {
+    this.globalData.playingMusicId = musicId
+  },
+  // 获取播放音乐的ID
+  getPlayMusicId() {
+    return this.globalData.playingMusicId
+  },
   // 全局对象
   globalData: {
+    // 当前正在播放音乐的ID
+    playingMusicId: -1,
     // 首页是否显示倒计时
     showStartComoponent: {
       expires: 0, 
