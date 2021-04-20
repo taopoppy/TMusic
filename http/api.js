@@ -17,5 +17,9 @@ module.exports = {
   // 歌单详情
   playlistDetail: function() {
     return `${baseUrl}/playlist/detail`
+  },
+  // 获取歌曲播放地址
+  getSongUrl: function() {
+    return `${baseUrl}/song/url`
   }
 }

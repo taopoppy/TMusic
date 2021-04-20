@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/start/index",
     "pages/musiclist/index",
-    "pages/player/index"
+    "pages/player/index",
+    "components/progress-bar/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
