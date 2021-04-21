@@ -32,7 +32,7 @@
 
 /* 暂停图标 */
 .icon-pause::before {
-  content: '\e624'
+  content: '\e629'
 }
 
 /* 上一首图标 */

@@ -1,7 +1,4 @@
 // pages/player/player.js
-let musiclist = []
-// 正在播放歌曲的index
-let nowPlayingIndex = 0
 // 获取全局唯一的背景音频管理器
 const backgroundAudioManager = wx.getBackgroundAudioManager()
 const app = getApp()
@@ -14,36 +11,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    picUrl: '',
-    isPlaying: false, // false表示不播放，true表示正在播放
-    isLyricShow: false, //表示当前歌词是否显示
-    lyric: '',
-    isSame: false, // 表示是否为同一首歌
+    musicId: -1,             // 歌曲ID
+    picUrl: '',              // 歌曲封面
+    isPlaying: false,        // false表示不播放，true表示正在播放
+    isLyricShow: false,      // 表示当前歌词是否显示
+    lyric: '',               // 歌词
+    isSame: false,           // 表示是否为同一首歌
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    nowPlayingIndex = options.musicId
     this._loadMusicDetail(options.musicId)
   },
 
-  // 从storage当中取出音乐信息
-  _getMusicData(musicId) {
-    let playingListStorage = storage.getItem("playinglist")
-    if(playingListStorage!== "") {
-      let content = playingListStorage.content
-      let tempData = content.find(ele => String(ele.id) == String(musicId))
-      if(tempData) {
-        return tempData
-      }
-      return null
-    }
-    return null
-  },
-
-  // 初始化音乐信息
+  // 初始化音乐信息，并且开始播放
   async _loadMusicDetail(musicId) {
     if (musicId == app.getPlayMusicId()) {
       this.setData({
@@ -63,8 +46,9 @@ Page({
       title: music.name,
     })
 
-    // 设置图片
+    // 设置音乐信息
     this.setData({
+      musicId: musicId,
       picUrl: utils.transHttps(music.al.picUrl), 
       isPlaying: false,
     })
@@ -72,45 +56,33 @@ Page({
     // 设置正在播放音乐的id
     app.setPlayMusicId(musicId)
 
-    wx.showLoading({
-      title: '歌曲加载中',
-    })
     getData.getSongUrl(musicId).then((res) => {
-      // 需要更改
-      let result = JSON.parse(res.result)
-      if (result.data[0].url == null) {
+      // res就是获取到播放地址的对象
+      if (res.url == null) {
         wx.showToast({
           title: '无权限播放',
         })
         return
       }
       if (!this.data.isSame) {
-        backgroundAudioManager.src = result.data[0].url
-        backgroundAudioManager.title = music.name
-        backgroundAudioManager.coverImgUrl = music.al.picUrl
-        backgroundAudioManager.singer = music.ar[0].name
-        backgroundAudioManager.epname = music.al.name
+        backgroundAudioManager.src = res.url // 音乐的播放地址，当设置了新的 src 时，会自动开始播放
+        backgroundAudioManager.title = music.name // 音频标题，用于原生音频播放器音频标题（必填）
+        backgroundAudioManager.coverImgUrl = music.al.picUrl // 封面图 URL，用于做原生音频播放器背景图
+        backgroundAudioManager.singer = music.ar[0].name // 歌手名，原生音频播放器中的分享功能
+        backgroundAudioManager.epname = music.al.name // 专辑名，原生音频播放器中的分享功能
 
-        // 保存播放历史
-        this.savePlayHistory()
+        // // 保存播放历史
+        // this.savePlayHistory()
       }
 
       this.setData({
         isPlaying: true
       })
-      wx.hideLoading()
 
       // 加载歌词
-      wx.cloud.callFunction({
-        name: 'music',
-        data: {
-          musicId,
-          $url: 'lyric',
-        }
-      }).then((res) => {
-        console.log(res)
+      getData.getSongLyric(musicId).then((res) => {
         let lyric = '暂无歌词'
-        const lrc = JSON.parse(res.result).lrc
+        const lrc = res.lrc
         if (lrc) {
           lyric = lrc.lyric
         }
@@ -119,78 +91,116 @@ Page({
         })
       })
     })
-
   },
 
+  // 从storage当中取出音乐信息
+  _getMusicData(musicId) {
+    let playingListStorage = storage.getItem("playinglist")
+    if(playingListStorage!== "") {
+      let content = playingListStorage.content
+      let tempData = content.find(ele => String(ele.id) == String(musicId))
+      if(tempData) {
+        return tempData
+      }
+      return null
+    }
+    return null
+  },
+
+  // 暂停和继续播放处理
   togglePlaying() {
-    // 正在播放
     if (this.data.isPlaying) {
-      backgroundAudioManager.pause()
+      backgroundAudioManager.pause() // 正在播放则暂停
     } else {
-      backgroundAudioManager.play()
+      backgroundAudioManager.play()  // 正在暂停则播放
     }
     this.setData({
       isPlaying: !this.data.isPlaying
     })
   },
 
+  // 上一首
   onPrev() {
-    nowPlayingIndex--
-    if (nowPlayingIndex < 0) {
-      nowPlayingIndex = musiclist.length - 1
+    // 查找当前歌曲在播放列表中的index
+    // 然后找到index-1歌曲信息中的musicId即可
+    let playingListStorage = storage.getItem("playinglist").content
+    let tempMusicId = -1
+    if(Array.isArray(playingListStorage)) {
+      playingListStorage.find((ele, index)=> {
+        if(ele.id == this.data.musicId) {
+          let tempMusicIndex = index - 1 < 0 ? playingListStorage.length - 1 : index -1
+          tempMusicId = playingListStorage[tempMusicIndex].id
+          return 
+        }
+      })
     }
-    this._loadMusicDetail(musiclist[nowPlayingIndex].id)
+    this._loadMusicDetail(tempMusicId)
   },
+  // 下一首
   onNext() {
-    nowPlayingIndex++
-    if (nowPlayingIndex === musiclist.length) {
-      nowPlayingIndex = 0
-    }
-    this._loadMusicDetail(musiclist[nowPlayingIndex].id)
+   // 查找当前歌曲在播放列表中的index
+   // 然后找到index+1歌曲信息中的musicId即可
+   let playingListStorage = storage.getItem("playinglist").content
+   let tempMusicId = -1
+   if(Array.isArray(playingListStorage)) {
+     playingListStorage.find((ele, index)=> {
+       if(ele.id == this.data.musicId) {
+         let tempMusicIndex = index + 1 > playingListStorage.length - 1 ? 0 : index + 1
+         tempMusicId = playingListStorage[tempMusicIndex].id
+         return 
+       }
+     })
+   }
+   this._loadMusicDetail(tempMusicId)
   },
 
+  // 切换歌词和封面显示
   onChangeLyricShow() {
     this.setData({
       isLyricShow: !this.data.isLyricShow
     })
   },
 
+  // 进度条更新
   timeUpdate(event) {
     this.selectComponent('.lyric').update(event.detail.currentTime)
   },
 
+  // 播放
   onPlay() {
     this.setData({
       isPlaying: true,
     })
   },
+
+  // 暂停
   onPause() {
     this.setData({
       isPlaying: false,
     })
   },
 
-  // 保存播放历史
-  savePlayHistory() {
-    //  当前正在播放的歌曲
-    const music = musiclist[nowPlayingIndex]
-    const openid = app.globalData.openid
-    const history = wx.getStorageSync(openid)
-    let bHave = false
-    for (let i = 0, len = history.length; i < len; i++) {
-      if (history[i].id == music.id) {
-        bHave = true
-        break
-      }
-    }
-    if (!bHave) {
-      history.unshift(music)
-      wx.setStorage({
-        key: openid,
-        data: history,
-      })
-    }
-  },
+  // // 保存播放历史
+  // savePlayHistory() {
+  //   //  当前正在播放的歌曲
+  //   const music = musiclist[nowPlayingIndex]
+  //   const openid = app.globalData.openid
+  //   const history = wx.getStorageSync(openid)
+  //   let bHave = false
+  //   for (let i = 0, len = history.length; i < len; i++) {
+  //     if (history[i].id == music.id) {
+  //       bHave = true
+  //       break
+  //     }
+  //   }
+  //   if (!bHave) {
+  //     history.unshift(music)
+  //     wx.setStorage({
+  //       key: openid,
+  //       data: history,
+  //     })
+  //   }
+  // },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

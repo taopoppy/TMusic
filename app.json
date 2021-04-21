@@ -11,7 +11,8 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "TMusic",
     "navigationBarTextStyle": "black"
-  },
+  }, 
   "darkmode": true,
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "requiredBackgroundModes": ["audio", "location"]
 }

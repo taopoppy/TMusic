@@ -21,5 +21,9 @@ module.exports = {
   // 获取歌曲播放地址
   getSongUrl: function() {
     return `${baseUrl}/song/url`
+  },
+  // 获取歌词
+  getSongLyric: function() {
+    return `${baseUrl}/lyric`
   }
 }

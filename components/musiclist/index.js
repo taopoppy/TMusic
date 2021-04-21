@@ -44,12 +44,17 @@ Component({
         // 说明要么没存过，要么过期被删除了
         storage.setItem("playinglist",[...this.properties.musiclist])
       } else if (Array.isArray(playinglist.content) && playinglist.content.length < 30 && hasNewData) {
-        // 说明才保存的歌曲数量还没有到顶点30
-        storage.setItem("playinglist", [...this.properties.musiclist, ...playinglist.content])
+        if(playinglist.content.findIndex(ele => ele.id == musicid) === -1) {
+          // 说明才保存的歌曲数量还没有到顶点30,且播放列表中没有该歌曲
+          storage.setItem("playinglist", [...this.properties.musiclist, ...playinglist.content])
+        }
+        
       } else if (Array.isArray(playinglist.content) && playinglist.content.length >= 30 && hasNewData) {
-        // 说明storage保存的播放列表中的歌曲数量到底上限30
-        let oldData = playinglist.content.slice(0, 20)
-        storage.setItem("playinglist", [...this.properties.musiclist, ...oldData])
+        if(playinglist.content.findIndex(ele => ele.id == musicid) === -1) {
+          // 说明storage保存的播放列表中的歌曲数量到底上限30,且播放列表中没有该歌曲
+          let oldData = playinglist.content.slice(0, 20)
+          storage.setItem("playinglist", [...this.properties.musiclist, ...oldData])
+        }
       }
 
       // 最后跳转

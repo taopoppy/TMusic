@@ -12,14 +12,28 @@
 
   <!-- 进度条 -->
   <view class="progress-bar">
-    <t-progress-bar bind:musicEnd="onNext" bind:timeUpdate="timeUpdate" bind:musicPlay="onPlay" bind:musicPause="onPause" isSame="{{isSame}}" />
+    <t-progress-bar
+      bind:musicEnd="onNext"
+      bind:timeUpdate="timeUpdate"
+      bind:musicPlay="onPlay"
+      bind:musicPause="onPause"
+      isSame="{{isSame}}" />
   </view>
 
   <!-- 控制面板 -->
   <view class="control">
-    <text class="iconfont icon-left" bind:tap="onPrev"></text>
-    <text class="iconfont {{isPlaying?'icon-pause':'icon-play'}}" bind:tap="togglePlaying"></text>
-    <text class="iconfont icon-right" bind:tap="onNext"></text>
+    <view
+      class="iconfont icon-left control-button"
+      bind:tap="onPrev"
+    ></view>
+    <view
+      class="iconfont control-button {{isPlaying?'icon-pause':'icon-play'}}"
+      bind:tap="togglePlaying"
+    ></view>
+    <view
+      class="iconfont icon-right control-button"
+      bind:tap="onNext"
+    ></view>
   </view>
 
 </view>

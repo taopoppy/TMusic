@@ -115,3 +115,8 @@
   transform: translateX(-50%);
   bottom: 24%;
 }
+
+.control-button {
+  font-size: 80rpx!important;
+  margin: 0 20rpx;
+}
