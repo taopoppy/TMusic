@@ -9,7 +9,7 @@ Component({
       type: Boolean,
       value: false,
     },
-    lyric: String,
+    lyric: String, // 歌词本身
   },
 
   observers: {
@@ -25,25 +25,24 @@ Component({
       } else {
         this._parseLyric(lrc)
       }
-      // console.log(lrc)
     },
   },
   /**
    * 组件的初始数据
    */
   data: {
-    lrcList: [],
+    lrcList: [], // 特殊格式的歌词：[{"lrc":"你问我爱你有多深", "time":123455}, {"lrc":"我爱你有几分", "time":1234785}]
     nowLyricIndex: 0, // 当前选中的歌词的索引
     scrollTop: 0, // 滚动条滚动的高度
   },
 
   lifetimes: {
     ready() {
-      // 750rpx
+      // 所有手机的小程序的宽度都是750rpx
       wx.getSystemInfo({
         success(res) {
-          // console.log(res)
-          // 求出1rpx的大小
+          // 屏幕实际宽度 / 750 = 1rpx
+          // 一行歌词为64rpx，所以lyricHeight单位为px
           lyricHeight = res.screenWidth / 750 * 64
         },
       })
@@ -54,12 +53,14 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    // 被父组件调用的更新当前歌词显示的方法
     update(currentTime) {
       // console.log(currentTime)
       let lrcList = this.data.lrcList
       if (lrcList.length == 0) {
         return
       }
+      // 处理歌曲后面没有歌词的部分时间
       if (currentTime > lrcList[lrcList.length - 1].time) {
         if (this.data.nowLyricIndex != -1) {
           this.setData({
@@ -78,9 +79,10 @@ Component({
         }
       }
     },
+
+    // 解析歌词
     _parseLyric(sLyric) {
-      let line = sLyric.split('\n')
-      // console.log(line)
+      let line = sLyric.split('\n') // 歌词分为数组类型
       let _lrcList = []
       line.forEach((elem) => {
         let time = elem.match(/\[(\d{2,}):(\d{2})(?:\.(\d{2,3}))?]/g)

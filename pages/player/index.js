@@ -71,8 +71,8 @@ Page({
         backgroundAudioManager.singer = music.ar[0].name // 歌手名，原生音频播放器中的分享功能
         backgroundAudioManager.epname = music.al.name // 专辑名，原生音频播放器中的分享功能
 
-        // // 保存播放历史
-        // this.savePlayHistory()
+        // 保存播放历史
+        this.savePlayHistory(music)
       }
 
       this.setData({
@@ -163,6 +163,8 @@ Page({
 
   // 进度条更新
   timeUpdate(event) {
+    // 将进度条组件传递回来的更新时间，再传给歌词组件
+    // update组件必须要再歌词组件当中定义好
     this.selectComponent('.lyric').update(event.detail.currentTime)
   },
 
@@ -180,27 +182,18 @@ Page({
     })
   },
 
-  // // 保存播放历史
-  // savePlayHistory() {
-  //   //  当前正在播放的歌曲
-  //   const music = musiclist[nowPlayingIndex]
-  //   const openid = app.globalData.openid
-  //   const history = wx.getStorageSync(openid)
-  //   let bHave = false
-  //   for (let i = 0, len = history.length; i < len; i++) {
-  //     if (history[i].id == music.id) {
-  //       bHave = true
-  //       break
-  //     }
-  //   }
-  //   if (!bHave) {
-  //     history.unshift(music)
-  //     wx.setStorage({
-  //       key: openid,
-  //       data: history,
-  //     })
-  //   }
-  // },
+  // 保存播放历史
+  savePlayHistory(music) {
+    let history = storage.getItem("history")
+    if(history === "" && music) {
+      storage.setItem("history",[music])
+    } else if (Array.isArray(history.content) && history.content.length<30) {
+      storage.setItem("history", [music, ...history.content])
+    } else if (Array.isArray(history.content) && history.content.length >= 30) {
+      let oldData = history.content.slice(0, 30)
+      storage.setItem("history", [music, ...oldData])
+    }
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

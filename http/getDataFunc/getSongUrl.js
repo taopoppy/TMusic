@@ -16,7 +16,7 @@ module.exports = {
     }
     // 2. 缓存当中找不到就去请求
     try {
-      let res = await request.fetch(Api.getSongUrl(), {id: id},{loading:true})
+      let res = await request.fetch(Api.getSongUrl(), {id: id},{})
       if(res.statusCode && res.statusCode === 200) {
         let tempUrlObj = res.data.data[0] || null
         // 保存到正在播放的列表数据当中
