@@ -7,8 +7,12 @@ module.exports = {
     return `${baseUrl}/banner`
   },
   // 搜索
-  search: function(keyword) {
+  search: function() {
     return `${baseUrl}/search`
+  },
+  // 热搜信息
+  hotSearch: function() {
+    return `${baseUrl}/search/hot/detail`
   },
   // 推荐歌单
   personalized: function() {

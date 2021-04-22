@@ -7,7 +7,9 @@ Page({
     // 轮播图数据
     bannerData: [],
     // 推荐歌单数据
-    recommendData: []
+    recommendData: [],
+    // 热搜数据
+    hotSearchData: []
   },
   async onLoad(option) {
     wx.hideHomeButton()
@@ -29,9 +31,12 @@ Page({
   async getAllData(force = false) {
     let newBannerData = await getData.getBannerData(app, force)
     let newRecommendData = await getData.getRecommendList(app, force)
+    let newHotSearchData = await getData.getHotSearch(app, force)
+
     this.setData({
       bannerData: newBannerData.content,
-      recommendData: newRecommendData.content
+      recommendData: newRecommendData.content,
+      hotSearchData: newHotSearchData.content,
     })
   },
 
@@ -50,6 +55,20 @@ Page({
     wx.showToast({
       title: '没有更多了',
       icon:'none'
+    })
+  },
+
+  // 跳转到搜索页
+  goToSearchPage:function(e) {
+    wx.navigateTo({
+      url: '/pages/search/index',
+    })
+  },
+
+  // 跳转到用户中心页面
+  goToUserSpace:function(e) {
+    wx.navigateTo({
+      url: '/pages/user/index',
     })
   }
 })

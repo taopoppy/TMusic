@@ -63,7 +63,10 @@ Page({
 
     // 获取轮播图数据
     await getData.getBannerData(app)
+    // 获取推荐歌单数据
     await getData.getRecommendList(app)
+    // 获取热搜数据
+    await getData.getHotSearch(app)
   },
   // 进入主页
   timeTap:function() {

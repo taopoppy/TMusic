@@ -1,7 +1,33 @@
 <!--index.wxml-->
-<view>
+<view class="home-view">
+  <!--顶部搜索和个人中心-->
+  <view class="top-view">
+    <view class="user-icon-view" bindtap="goToUserSpace"> 
+      <icon class="iconfont icon-user user-icon"></icon>
+    </view>
+    <view class="top-view-seach" bindtap="goToSearchPage">
+      <view class="top-search-icon-view">
+        <icon class="iconfont icon-search search-icon"></icon>
+      </view>
+      <swiper
+        class="hot-search-swiper"
+        autoplay="{{true}}"
+        duration="500"
+        circular="{{true}}"
+      >
+        <block wx:for="{{hotSearchData}}" wx:key="index">
+          <swiper-item class="hot-search-text">
+            <text >{{item.searchWord}}</text>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+
+  <!-- 轮播图 -->
   <t-banner bannerData="{{bannerData}}"></t-banner>
 
+  <!-- 推荐歌单-->
   <view class="playlist-container">
     <block wx:for="{{recommendData}}" wx:key="index">
       <t-playlist data="{{item}}"></t-playlist>

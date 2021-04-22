@@ -4,15 +4,19 @@
     "pages/start/index",
     "pages/musiclist/index",
     "pages/player/index",
-    "components/progress-bar/index"
+    "pages/search/index",
+    "pages/user/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "TMusic",
     "navigationBarTextStyle": "black"
-  }, 
+  },
   "darkmode": true,
   "sitemapLocation": "sitemap.json",
-  "requiredBackgroundModes": ["audio", "location"]
+  "requiredBackgroundModes": [
+    "audio",
+    "location"
+  ]
 }

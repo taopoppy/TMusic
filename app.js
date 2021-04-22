@@ -32,6 +32,11 @@ App({
     recommendList: {
       expires: 0,
       content: []
+    },
+    // 热搜信息
+    hotSearch: {
+      expires: 0,
+      content: []
     }
   }
 })

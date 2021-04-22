@@ -3,5 +3,7 @@
     "t-banner": "/components/banner/index",
     "t-playlist":"/components/playlist/index"
   },
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": true,
+  "navigationBarBackgroundColor": "#daf8ff",
+  "backgroundColor":"#daf8ff"
 }
