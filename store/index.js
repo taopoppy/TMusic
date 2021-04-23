@@ -10,9 +10,9 @@ module.exports = {
   },
 
   // 设置存储
-  setItem(key, value) {
+  setItem(key, value, time=1296000000) {
     let val = {
-      expires: Date.parse(new Date()) + 1296000000, // 过期时间为15天
+      expires: Date.parse(new Date()) + time, // 过期时间为15天
       content: value
     }
     wx.setStorageSync(key, val)

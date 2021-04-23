@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "t-searchinput": "/components/searchinput/index"
+  },
+  "backgroundColor":"#daf8ff",
+  "navigationBarBackgroundColor": "#daf8ff"
 }

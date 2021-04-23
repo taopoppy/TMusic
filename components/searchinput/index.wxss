@@ -1,0 +1,25 @@
+/* components/searchinput/index.wxss */
+@import "../../app.wxss";
+
+.top-view-seach {
+  height: 60rpx;
+  border-radius: 30rpx;
+  background: #fff;
+  padding-left: 5rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.top-search-icon-view {
+  height: 60rpx;
+  width: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-icon {
+  font-size: 60rpx;
+  color: #9fa3a5;
+}

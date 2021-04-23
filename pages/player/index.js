@@ -2,9 +2,9 @@
 // 获取全局唯一的背景音频管理器
 const backgroundAudioManager = wx.getBackgroundAudioManager()
 const app = getApp()
-const storage = require('../../store/index.js')
 const utils = require('../../utils/util.js')
 const getData = require('../../http/getData.js')
+const { playingList, playHistory } = require('../../store/getStorageData.js')
 
 Page({
   /**
@@ -72,7 +72,7 @@ Page({
         backgroundAudioManager.epname = music.al.name // 专辑名，原生音频播放器中的分享功能
 
         // 保存播放历史
-        this.savePlayHistory(music)
+        playHistory.savePlayHistory(music)
       }
 
       this.setData({
@@ -95,16 +95,7 @@ Page({
 
   // 从storage当中取出音乐信息
   _getMusicData(musicId) {
-    let playingListStorage = storage.getItem("playinglist")
-    if(playingListStorage!== "") {
-      let content = playingListStorage.content
-      let tempData = content.find(ele => String(ele.id) == String(musicId))
-      if(tempData) {
-        return tempData
-      }
-      return null
-    }
-    return null
+    return playingList.getMusicData(musicId)
   },
 
   // 暂停和继续播放处理
@@ -123,35 +114,15 @@ Page({
   onPrev() {
     // 查找当前歌曲在播放列表中的index
     // 然后找到index-1歌曲信息中的musicId即可
-    let playingListStorage = storage.getItem("playinglist").content
-    let tempMusicId = -1
-    if(Array.isArray(playingListStorage)) {
-      playingListStorage.find((ele, index)=> {
-        if(ele.id == this.data.musicId) {
-          let tempMusicIndex = index - 1 < 0 ? playingListStorage.length - 1 : index -1
-          tempMusicId = playingListStorage[tempMusicIndex].id
-          return 
-        }
-      })
-    }
+    let tempMusicId = playingList.getPrevMusicId(this.data.musicId)
     this._loadMusicDetail(tempMusicId)
   },
   // 下一首
   onNext() {
-   // 查找当前歌曲在播放列表中的index
-   // 然后找到index+1歌曲信息中的musicId即可
-   let playingListStorage = storage.getItem("playinglist").content
-   let tempMusicId = -1
-   if(Array.isArray(playingListStorage)) {
-     playingListStorage.find((ele, index)=> {
-       if(ele.id == this.data.musicId) {
-         let tempMusicIndex = index + 1 > playingListStorage.length - 1 ? 0 : index + 1
-         tempMusicId = playingListStorage[tempMusicIndex].id
-         return 
-       }
-     })
-   }
-   this._loadMusicDetail(tempMusicId)
+    // 查找当前歌曲在播放列表中的index
+    // 然后找到index+1歌曲信息中的musicId即可
+    let tempMusicId = playingList.getNextMusicId(this.data.musicId)
+    this._loadMusicDetail(tempMusicId)
   },
 
   // 切换歌词和封面显示
@@ -180,19 +151,6 @@ Page({
     this.setData({
       isPlaying: false,
     })
-  },
-
-  // 保存播放历史
-  savePlayHistory(music) {
-    let history = storage.getItem("history")
-    if(history === "" && music) {
-      storage.setItem("history",[music])
-    } else if (Array.isArray(history.content) && history.content.length<30) {
-      storage.setItem("history", [music, ...history.content])
-    } else if (Array.isArray(history.content) && history.content.length >= 30) {
-      let oldData = history.content.slice(0, 30)
-      storage.setItem("history", [music, ...oldData])
-    }
   },
 
   /**

@@ -4,6 +4,8 @@ const app = getApp()
 const getData = require('../../http/getData.js')
 Page({
   data: {
+    // 轮播图当前显示的index
+    bannerIndex: 0,
     // 轮播图数据
     bannerData: [],
     // 推荐歌单数据
@@ -58,10 +60,19 @@ Page({
     })
   },
 
+  // 轮播图current修改时触发的事件
+  bannerIndexChange(event) {
+    const {current} = event.detail
+    this.setData({
+      bannerIndex: current
+    })
+  },
+
+
   // 跳转到搜索页
   goToSearchPage:function(e) {
     wx.navigateTo({
-      url: '/pages/search/index',
+      url: `/pages/search/index?current=${this.data.bannerIndex}`,
     })
   },
 

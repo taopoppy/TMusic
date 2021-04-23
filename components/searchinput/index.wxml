@@ -1,0 +1,8 @@
+<view
+  class="top-view-seach f-class"
+>
+  <view class="top-search-icon-view">
+    <icon class="iconfont icon-search search-icon"></icon>
+  </view>
+  <slot></slot>
+</view>

@@ -1,2 +1,57 @@
-<!--pages/search/index.wxml-->
-<text>pages/search/index.wxml</text>
+<view class="home-view">
+  <!-- 搜索输入框 -->
+  <view class="search-view-class">
+    <t-searchinput f-class="search-wrap-class">
+      <input
+        confirm-type="done"
+        auto-focus="{{true}}"
+        value="{{inputValue}}"
+        placeholder="{{inputPlaceholder}}"
+        bindconfirm="bindconfirm"
+        bindblur="bindblur"
+      />
+    </t-searchinput>
+    <view class="cancel-button-view" bindtap="cancel">
+      <text class="cancel-button">取消</text>
+    </view>
+    
+  </view>
+
+  <!-- 搜索历史 -->
+  <view class="search-history-view-class">
+    <view>搜索历史</view>
+    <view class="history-search-show">
+      <block wx:for="{{historySearchData}}" wx:key="index">
+        <view class="history-search-element">
+          <text>{{item}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 热搜显示 -->
+  <view class="hot-search-view-class">
+    <view>热搜</view>
+    <view class="hot-search-show">
+      <block wx:for="{{hotSearchData}}" wx:key="index"> 
+        <view class="hot-search-content-class">
+          <text
+            class="hot-search-content-index"
+            style="font-weight: {{index < 5? 'bold': 'normal'}}"
+          >{{index+1}}</text>
+          <text
+            class="hot-search-content-searchword"
+            style="font-weight: {{index < 5? 'bold': 'normal'}}"
+            >{{item.searchWord}}</text>
+          <image
+            class="hot-search-content-image"
+            wx:if="{{item.iconUrl}}"
+            src="{{item.iconUrl}}"
+            mode="heightFix"
+          />
+        </view>
+      </block>
+    </view>
+
+  </view>
+</view>

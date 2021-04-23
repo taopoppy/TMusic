@@ -5,15 +5,14 @@
     <view class="user-icon-view" bindtap="goToUserSpace"> 
       <icon class="iconfont icon-user user-icon"></icon>
     </view>
-    <view class="top-view-seach" bindtap="goToSearchPage">
-      <view class="top-search-icon-view">
-        <icon class="iconfont icon-search search-icon"></icon>
-      </view>
+    <t-searchinput f-class="searchinputclass">
       <swiper
         class="hot-search-swiper"
         autoplay="{{true}}"
         duration="500"
         circular="{{true}}"
+        bindtap="goToSearchPage"
+        bindchange="bannerIndexChange"
       >
         <block wx:for="{{hotSearchData}}" wx:key="index">
           <swiper-item class="hot-search-text">
@@ -21,7 +20,7 @@
           </swiper-item>
         </block>
       </swiper>
-    </view>
+    </t-searchinput>
   </view>
 
   <!-- 轮播图 -->
