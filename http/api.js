@@ -29,5 +29,13 @@ module.exports = {
   // 获取歌词
   getSongLyric: function() {
     return `${baseUrl}/lyric`
+  },
+  // 获取搜索结果
+  getSearchResult: function() {
+    return `${baseUrl}/search/suggest`
+  },
+  // 获取歌曲详情
+  getSongDetail: function() {
+    return `${baseUrl}/song/detail`
   }
 }

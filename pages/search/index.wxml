@@ -2,27 +2,34 @@
   <!-- 搜索输入框 -->
   <view class="search-view-class">
     <t-searchinput f-class="search-wrap-class">
-      <input
-        confirm-type="done"
-        auto-focus="{{true}}"
-        value="{{inputValue}}"
-        placeholder="{{inputPlaceholder}}"
-        bindconfirm="bindconfirm"
-        bindblur="bindblur"
-      />
+      <view class="search-delete-class">
+        <input
+          class="search-input-class"
+          confirm-type="done"
+          auto-focus="{{true}}"
+          value="{{inputValue}}"
+          placeholder="{{inputPlaceholder}}"
+          bindconfirm="bindconfirm"
+        />
+        <icon
+          hidden="{{inputValue===''&&hasSearchResult===false}}"
+          class="iconfont icon-deleteinput delete-input"
+          bindtap="clearInput"
+        ></icon>
+      </view>
+
     </t-searchinput>
     <view class="cancel-button-view" bindtap="cancel">
       <text class="cancel-button">取消</text>
     </view>
-    
   </view>
 
   <!-- 搜索历史 -->
-  <view class="search-history-view-class">
+  <view hidden="{{hasSearchResult}}" class="search-history-view-class">
     <view>搜索历史</view>
     <view class="history-search-show">
       <block wx:for="{{historySearchData}}" wx:key="index">
-        <view class="history-search-element">
+        <view class="history-search-element" hover-class="tap-history-ele" bindtap="tapHistorySearch" data-keyword="{{item}}">
           <text>{{item}}</text>
         </view>
       </block>
@@ -30,11 +37,11 @@
   </view>
 
   <!-- 热搜显示 -->
-  <view class="hot-search-view-class">
+  <view hidden="{{hasSearchResult}}"  class="hot-search-view-class">
     <view>热搜</view>
     <view class="hot-search-show">
       <block wx:for="{{hotSearchData}}" wx:key="index"> 
-        <view class="hot-search-content-class">
+        <view class="hot-search-content-class" hover-class="tap-hotsearch-ele" bindtap="tapHotSearch" data-keyword="{{item.searchWord}}">
           <text
             class="hot-search-content-index"
             style="font-weight: {{index < 5? 'bold': 'normal'}}"
@@ -50,6 +57,37 @@
             mode="heightFix"
           />
         </view>
+      </block>
+    </view>
+  </view>
+
+  <!--搜索结果-->
+  <view class="search-result-view" wx:if="{{hasSearchResult}}">
+    <!-- 歌手部分-->
+    <view wx:if="{{searchResult.hasOwnProperty('artists')}}" class="search-result-artists-view">
+      <block wx:for="searchResult.artists"> 
+
+      </block>
+    </view>
+
+    <!--歌曲部分-->
+    <view class="search-result-songs-view">
+      <t-musiclist musiclist="{{searchResult.songs}}" >
+        <view><icon class="iconfont icon-playing" style="font-size:35rpx"></icon></view>
+      </t-musiclist>
+    </view>
+
+    <!--歌单部分-->
+    <view wx:if="{{searchResult.hasOwnProperty('playlists')}}" class="search-result-playlists-view">
+      <block wx:for="searchResult.playlists"> 
+
+      </block>
+    </view>
+
+    <!--专辑部分-->
+    <view wx:if="{{searchResult.hasOwnProperty('albums')}}" class="search-result-albums-view">
+      <block wx:for="searchResult.albums"> 
+
       </block>
     </view>
 

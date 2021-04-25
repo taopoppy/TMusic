@@ -1,6 +1,6 @@
 /**index.wxss**/
 .home-view {
-  background: #daf8ff;
+
 }
 
 .searchinputclass {
@@ -37,7 +37,7 @@
 }
 
 .user-icon {
-  color:#fff;
+  color:#9fa3a5;
   font-size: 60rpx;
 }
 

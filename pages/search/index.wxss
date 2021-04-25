@@ -4,7 +4,6 @@ page{
 }
 .home-view {
   height: 100%;
-  background: #daf8ff;
 }
 .search-view-class {
   padding: 5rpx 0;
@@ -13,9 +12,25 @@ page{
   align-items: center;
 }
 
+.search-input-class {
+  width: 475rpx;
+}
 .search-wrap-class {
   width: 600rpx;
   margin-left: 20rpx;
+}
+
+.tap-history-ele {
+  background: #bfbebe;
+}
+
+.tap-hotsearch-ele {
+  background: #dbe0e4;
+}
+
+.delete-input {
+  font-size: 60rpx;
+  color: #9fa3a5
 }
 
 .cancel-button-view {
@@ -26,6 +41,12 @@ page{
   align-items: center;
 }
 
+.search-delete-class {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
 
 .search-history-view-class{
   padding: 30rpx 20rpx;
@@ -85,4 +106,28 @@ page{
 .hot-search-content-image{
   margin-left: 20rpx;
   height: 30rpx;
+}
+
+.search-result-view {
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  margin-top: 30rpx;
+  height: 100%;
+  border-radius: 30rpx;
+}
+
+.search-result-artists-view {
+  background: #fff;
+}
+
+.search-result-songs-view {
+  background: #fff;
+}
+
+.search-result-playlists-view{
+  background: #fff;
+}
+
+.search-result-albums-view{
+  background: #fff;
 }

@@ -40,7 +40,7 @@ Page({
     if (!this.data.isSame) {
       backgroundAudioManager.stop()
     }
-    let music = this._getMusicData(musicId)
+    let music = await this._getMusicData(musicId)
     // 导航栏信息设置为音乐名字
     wx.setNavigationBarTitle({
       title: music.name,
@@ -93,9 +93,10 @@ Page({
     })
   },
 
-  // 从storage当中取出音乐信息
-  _getMusicData(musicId) {
-    return playingList.getMusicData(musicId)
+  // 请求歌曲详情
+  async _getMusicData(musicId) {
+    let music = await getData.getSongDetail(musicId)
+    return music
   },
 
   // 暂停和继续播放处理
