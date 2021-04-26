@@ -64,29 +64,56 @@
   <!--搜索结果-->
   <view class="search-result-view" wx:if="{{hasSearchResult}}">
     <!-- 歌手部分-->
-    <view wx:if="{{searchResult.hasOwnProperty('artists')}}" class="search-result-artists-view">
-      <block wx:for="searchResult.artists"> 
-
+    <view wx:if="{{searchResult.artists}}" class="search-result-artists-view">
+      <view class="mode-title">歌手</view>
+      <block wx:for="{{searchResult.artists}}"> 
+        <view class="search-result-artists-wrap">
+          <view class=".search-result-artists-wrap-one">
+            <image src="{{item.picUrl}}" class="search-image" mode="aspectFill"></image>
+            <view class="search-artists-content-wrap"> 
+              <view>
+                <text>歌手:</text>
+                <text class="artist-name">{{item.name}}</text>
+                <text wx:if="{{item.alias.length > 0}}">({{item.alias[0]}})</text>
+              </view>
+              <text class="artist-message">专辑:{{item.albumSize}}</text>
+            </view>
+          </view>
+          <view class="search-result-artists-wrap-two">
+            <view class="guanzhu-content">关注</view>
+          </view>
+        </view>
       </block>
     </view>
 
     <!--歌曲部分-->
-    <view class="search-result-songs-view">
-      <t-musiclist musiclist="{{searchResult.songs}}" >
-        <view><icon class="iconfont icon-playing" style="font-size:35rpx"></icon></view>
-      </t-musiclist>
+    <view wx:if="{{searchResult.songs}}" class="search-result-songs-view">
+      <view class="mode-title">单曲</view>
+      <block wx:for="{{searchResult.songs}}"> 
+        <view class="songs-view" bind:tap="onSelect" data-music="{{item}}">
+          <view class="songs-detail-wrap">
+            <text class="songs-detail-name">{{item.name}}</text>
+            <text class="songs-detail-author">{{item.artists[0].name}} - {{item.album.name}}</text>
+          </view>
+          <view class="songs-icon-wrap">
+            <icon class="iconfont icon-more songs-more-icon"></icon>
+          </view>
+        </view>
+      </block>
     </view>
 
     <!--歌单部分-->
-    <view wx:if="{{searchResult.hasOwnProperty('playlists')}}" class="search-result-playlists-view">
-      <block wx:for="searchResult.playlists"> 
-
+    <view wx:if="{{searchResult.playlists}}"  class="search-result-playlists-view">
+      <view class="mode-title">歌单</view>
+      <block wx:for="{{searchResult.playlists}}"> 
+        
       </block>
     </view>
 
     <!--专辑部分-->
-    <view wx:if="{{searchResult.hasOwnProperty('albums')}}" class="search-result-albums-view">
-      <block wx:for="searchResult.albums"> 
+    <view wx:if="{{searchResult.albums}}" class="search-result-albums-view">
+      <view class="mode-title">专辑</view>
+      <block wx:for="{{searchResult.albums}}"> 
 
       </block>
     </view>

@@ -1,12 +1,13 @@
 @font-face {
   font-family: 'taopoppy';  /* project id 1085003 */
-  src: url('//at.alicdn.com/t/font_1085003_0z4tnrhbv2m.eot');
-  src: url('//at.alicdn.com/t/font_1085003_0z4tnrhbv2m.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1085003_0z4tnrhbv2m.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1085003_0z4tnrhbv2m.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1085003_0z4tnrhbv2m.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1085003_0z4tnrhbv2m.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1085003_pvol6ohfj1b.eot');
+  src: url('//at.alicdn.com/t/font_1085003_pvol6ohfj1b.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1085003_pvol6ohfj1b.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1085003_pvol6ohfj1b.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1085003_pvol6ohfj1b.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1085003_pvol6ohfj1b.svg#iconfont') format('svg');
 }
+
 /* 默认的图标样式 */
 .iconfont {
   font-family: 'taopoppy'!important;
@@ -50,4 +51,9 @@
 /* 叉号图标 */
 .icon-deleteinput::before {
   content: '\e604'
+}
+
+/* 更多图标 */
+.icon-more::before {
+  content: '\e661'
 }

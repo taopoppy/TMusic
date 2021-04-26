@@ -4,5 +4,7 @@
     "t-playlist":"/components/playlist/index",
     "t-searchinput":"/components/searchinput/index"
   },
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#f1f1f1",
+  "navigationBarBackgroundColor": "#f1f1f1"
 }

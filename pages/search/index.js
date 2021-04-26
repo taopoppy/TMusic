@@ -2,6 +2,7 @@
 const app = getApp()
 const { searchHistory } = require('../../store/getStorageData.js')
 const getData = require('../../http/getData.js')
+const { playingList } = require('../../store/getStorageData.js')
 
 Page({
 
@@ -109,6 +110,15 @@ Page({
     wx.navigateBack()
   },
 
+  // 点击歌曲列表播放歌曲
+  onSelect(event) {
+    // 拿到歌曲信息
+    const music = event.currentTarget.dataset.music
+    // 最后跳转
+    wx.navigateTo({
+      url: `/pages/player/index?musicId=${music.id}`,
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

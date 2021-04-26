@@ -22,8 +22,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-    this._loadMusicDetail(options.musicId)
+  onLoad: async function(options) {
+    await this._loadMusicDetail(options.musicId)
   },
 
   // 初始化音乐信息，并且开始播放
@@ -41,6 +41,7 @@ Page({
       backgroundAudioManager.stop()
     }
     let music = await this._getMusicData(musicId)
+    console.log("歌曲信息",music)
     // 导航栏信息设置为音乐名字
     wx.setNavigationBarTitle({
       title: music.name,

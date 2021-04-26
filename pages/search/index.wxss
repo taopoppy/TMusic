@@ -4,6 +4,7 @@ page{
 }
 .home-view {
   height: 100%;
+  background: #f1f1f1;
 }
 .search-view-class {
   padding: 5rpx 0;
@@ -18,14 +19,15 @@ page{
 .search-wrap-class {
   width: 600rpx;
   margin-left: 20rpx;
+  background: #fff;
 }
 
 .tap-history-ele {
-  background: #bfbebe;
+  background: #cccccc;
 }
 
 .tap-hotsearch-ele {
-  background: #dbe0e4;
+  background: #cccccc;
 }
 
 .delete-input {
@@ -65,7 +67,7 @@ page{
   border-radius: 20rpx;
   padding: 5rpx 20rpx;
   margin: 5rpx 10rpx;
-  background: #dbe0e4;
+  background: #cccccc;
   justify-content: center;
   align-items: center;
   font-size: 25rpx;
@@ -112,22 +114,135 @@ page{
   padding-left: 20rpx;
   padding-right: 20rpx;
   margin-top: 30rpx;
-  height: 100%;
   border-radius: 30rpx;
+  background: #f1f1f1;
+}
+
+.mode-title {
+  font-weight: bold;
+  font-size: 40rpx;
 }
 
 .search-result-artists-view {
   background: #fff;
+  border-radius: 30rpx;
+  padding: 10rpx 20rpx;
+  margin: 20rpx 0;
+}
+
+.search-result-artists-wrap {
+  padding: 10rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.search-result-artists-wrap-one {
+  display: flex;
+  justify-content: center;
+}
+
+.search-result-artists-wrap-two {
+  height: 100rpx;
+  width: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.guanzhu-content {
+  border: 2rpx solid salmon;
+  color: salmon;
+  height: 60rpx;
+  width: 100rpx;
+  display: flex;
+  border-radius: 30rpx;
+  justify-content: center;
+  align-items: center;
+  font-size: small;
+}
+
+.search-image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+}
+
+.artist-name {
+  color:#5e70cc
+}
+
+.artist-message {
+  font-size: 20rpx;
+  color: #888;
+}
+
+.search-artists-content-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20rpx;
 }
 
 .search-result-songs-view {
   background: #fff;
+  border-radius: 30rpx;
+  padding: 10rpx 20rpx;
+  margin: 20rpx 0;
 }
 
 .search-result-playlists-view{
   background: #fff;
+  border-radius: 30rpx;
+  padding: 10rpx 20rpx;
+  margin: 20rpx 0;
 }
 
 .search-result-albums-view{
   background: #fff;
+  border-radius: 30rpx;
+  padding: 10rpx 20rpx;
+  margin: 20rpx 0;
+}
+
+.songs-view {
+  padding: 10rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.songs-detail-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.songs-detail-name {
+  font-size: 32rpx;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 10rpx;
+  font-weight: normal;
+}
+
+.songs-detail-author {
+  font-size: 24rpx;
+  color: #888;  
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.songs-icon-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.songs-more-icon {
+  color: #9fa3a5;
+  font-size: 40rpx;
 }

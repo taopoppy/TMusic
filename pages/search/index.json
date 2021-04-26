@@ -2,5 +2,7 @@
   "usingComponents": {
     "t-searchinput": "/components/searchinput/index",
     "t-musiclist": "/components/musiclist/index"
-  }
+  },
+  "backgroundColor": "#f1f1f1",
+  "navigationBarBackgroundColor": "#f1f1f1"
 }
