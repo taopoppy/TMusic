@@ -2,6 +2,11 @@
 const baseUrl = "https://autumnfish.cn"
 
 module.exports = {
+  // 微信请求openID
+  getOpenId:function(appId, appSecret, code) {
+    return `https://api.weixin.qq.com/sns/jscode2session?appid=${appId}&secret=${appSecret}&js_code=${code}&grant_type=authorization_code`;
+  },
+
   // 轮播图api
   banner: function() {
     return `${baseUrl}/banner`

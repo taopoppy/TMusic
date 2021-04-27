@@ -1,3 +1,4 @@
+<wxs module="utils" src="../index.wxs"></wxs>
 <view class="home-view">
   <!-- 搜索输入框 -->
   <view class="search-view-class">
@@ -66,7 +67,7 @@
     <!-- 歌手部分-->
     <view wx:if="{{searchResult.artists}}" class="search-result-artists-view">
       <view class="mode-title">歌手</view>
-      <block wx:for="{{searchResult.artists}}"> 
+      <block wx:for="{{searchResult.artists}}" wx:key="index"> 
         <view class="search-result-artists-wrap">
           <view class=".search-result-artists-wrap-one">
             <image src="{{item.picUrl}}" class="search-image" mode="aspectFill"></image>
@@ -89,8 +90,8 @@
     <!--歌曲部分-->
     <view wx:if="{{searchResult.songs}}" class="search-result-songs-view">
       <view class="mode-title">单曲</view>
-      <block wx:for="{{searchResult.songs}}"> 
-        <view class="songs-view" bind:tap="onSelect" data-music="{{item}}">
+      <block wx:for="{{searchResult.songs}}" wx:key="index"> 
+        <view class="songs-view" bind:tap="onSelect" data-music="{{item}}" hover-class="hover-background">
           <view class="songs-detail-wrap">
             <text class="songs-detail-name">{{item.name}}</text>
             <text class="songs-detail-author">{{item.artists[0].name}} - {{item.album.name}}</text>
@@ -105,18 +106,25 @@
     <!--歌单部分-->
     <view wx:if="{{searchResult.playlists}}"  class="search-result-playlists-view">
       <view class="mode-title">歌单</view>
-      <block wx:for="{{searchResult.playlists}}"> 
-        
+      <block wx:for="{{searchResult.playlists}}" wx:key="index"> 
+        <view class="playlists-wrap" bindtap="goToMusicList" data-id="{{item.id}}" hover-class="hover-background">
+          <image src="{{item.coverImgUrl}}" class="playlists-image"></image>
+          <view class="playlists-content">
+            <text class="playlists-content-one">{{item.name}}</text>
+            <text class="playlists-content-two">{{item.trackCount}}首 播放{{utils.tranNumber(item.playCount, 1)}}次 包含《<text class="playlists-content-two-keyword">{{inputValue === ""?inputPlaceholder:inputValue}}》</text></text>
+          </view>
+        </view>
       </block>
     </view>
 
-    <!--专辑部分-->
+    <!-- 专辑部分
     <view wx:if="{{searchResult.albums}}" class="search-result-albums-view">
       <view class="mode-title">专辑</view>
       <block wx:for="{{searchResult.albums}}"> 
 
       </block>
-    </view>
+    </view> -->
 
+    <view wx:if="{{!(searchResult.albums ||searchResult.playlists ||searchResult.songs || searchResult.artists)}}" class="no-result">无搜索结果</view>
   </view>
 </view>

@@ -2,8 +2,6 @@
 const app = getApp()
 const { searchHistory } = require('../../store/getStorageData.js')
 const getData = require('../../http/getData.js')
-const { playingList } = require('../../store/getStorageData.js')
-
 Page({
 
   /**
@@ -15,7 +13,7 @@ Page({
     hotSearchData: [], // 热搜数据
     historySearchData: [], // 搜索历史数据
     hasSearchResult: false,
-    searchResult: {}
+    searchResult: {},
   },
 
   /**
@@ -48,9 +46,6 @@ Page({
   bindconfirm: function(event) {
     let keyword = event.detail.value || this.data.inputPlaceholder
     if(keyword) {
-      this.setData({
-        hasSearchResult:true
-      })
       // 保存进入搜素历史
       searchHistory.saveToSearchHistory(keyword)
       // 更新搜索历史
@@ -58,6 +53,10 @@ Page({
 
       // 请求接口进行搜索
       this._searchKeyword(keyword)
+
+      this.setData({
+        hasSearchResult:true
+      })
     }
   },
 
@@ -91,7 +90,6 @@ Page({
 
   // 根据关键字搜索结果
   async _searchKeyword(keyword) {
-    console.log("请求关键字")
     let res = await getData.getSearchResult(keyword)
     this.setData({
       searchResult: res
@@ -119,6 +117,15 @@ Page({
       url: `/pages/player/index?musicId=${music.id}`,
     })
   },
+
+  // 跳转到歌单详情
+  goToMusicList(event) {
+    const id = event.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `/pages/musiclist/index?playlistId=${id}`,
+    })
+  },
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成

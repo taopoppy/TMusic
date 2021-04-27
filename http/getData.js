@@ -6,8 +6,13 @@ const getSongLyricObj = require('./getDataFunc/getSongLyric.js')
 const getHotSearch = require('./getDataFunc/getHotSearch.js')
 const getSongDetailObj = require('./getDataFunc/getSongDetail.js')
 const getSearchResultObj = require('./getDataFunc/getSearchResult.js')
+const getOpenIdObj = require('./getDataFunc/getOpenId.js')
+
 
 module.exports = {
+  // 获取微信用户的openId
+  getOpenId: getOpenIdObj.func,
+
   // 获取轮播图的数据
   getBannerData: getBannerObj.func,
   // 获取推荐歌单信息

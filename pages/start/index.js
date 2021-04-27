@@ -67,6 +67,9 @@ Page({
     await getData.getRecommendList(app)
     // 获取热搜数据
     await getData.getHotSearch(app)
+
+    // 获取用户信息
+    await getData.getOpenId()
   },
   // 进入主页
   timeTap:function() {
