@@ -1,18 +1,49 @@
 // pages/user/index.js
+const { getWangYiYunUser } = require('../../http/getData.js')
+const { wangYiYunMessageHistory } = require('../../store/getStorageData.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    userPhone: "",
+    userPassword: "",
+    needLogin: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let data = wangYiYunMessageHistory.getWangYiYunMessage()
+    if(data) {
+      this.setData({
+        needLogin: true
+      })
+    }
 
+  },
+
+  inputPhone(event) {
+    this.setData({
+      userPhone:event.detail.value
+    })
+  },
+
+  inputPassword(event) {
+    this.setData({
+      userPassword:event.detail.value
+    })
+  },
+  // 用户登录
+  async login(event) {
+    let data = await getWangYiYunUser(this.data.userPhone, this.data.userPassword)
+    wx.showToast({
+      title: data.message,
+      icon:'none'
+    })
   },
 
   /**

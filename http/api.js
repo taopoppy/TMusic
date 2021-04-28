@@ -1,5 +1,5 @@
 // 网易云api
-const baseUrl = "https://autumnfish.cn"
+const { baseUrl } = require('../config.js')
 
 module.exports = {
   // 微信请求openID
@@ -42,5 +42,13 @@ module.exports = {
   // 获取歌曲详情
   getSongDetail: function() {
     return `${baseUrl}/song/detail`
+  },
+  // 用户登录
+  getLoginCookie: function() {
+    return `${baseUrl}/login/cellphone`
+  },
+  // 获取网易云用户详情
+  getWangYiYunUserDetail: function() {
+    return `${baseUrl}/user/detail`
   }
 }

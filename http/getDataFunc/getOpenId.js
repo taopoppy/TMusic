@@ -9,7 +9,7 @@ module.exports = {
     // 1. 检查缓存当中是否已经有用户信息，且包含openId
     let userMessage = userMessageHistory.getUserMessage()
     if(userMessage) {
-      return 
+      return userMessage
     }
 
     // 2. 不包括再去请求
@@ -22,8 +22,11 @@ module.exports = {
             let data = result.data
             data.hasAuthorize = false
             userMessageHistory.UpdateUserMessage(data)
+            return data
           }
+          return null
         }
+        return null
       }
     })
   }

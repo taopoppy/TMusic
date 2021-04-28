@@ -7,7 +7,7 @@ const getHotSearch = require('./getDataFunc/getHotSearch.js')
 const getSongDetailObj = require('./getDataFunc/getSongDetail.js')
 const getSearchResultObj = require('./getDataFunc/getSearchResult.js')
 const getOpenIdObj = require('./getDataFunc/getOpenId.js')
-
+const getWangYiYunUserObj = require('./getDataFunc/getWangYiYunUser.js')
 
 module.exports = {
   // 获取微信用户的openId
@@ -28,5 +28,7 @@ module.exports = {
   // 获取歌曲信息
   getSongDetail: getSongDetailObj.func,
   // 获取搜索结果
-  getSearchResult: getSearchResultObj.func
+  getSearchResult: getSearchResultObj.func,
+  // 获取网易云账号的信息（包括id和cookid）
+  getWangYiYunUser: getWangYiYunUserObj.func
 }
