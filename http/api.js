@@ -50,5 +50,17 @@ module.exports = {
   // 获取网易云用户详情
   getWangYiYunUserDetail: function() {
     return `${baseUrl}/user/detail`
+  },
+  // 获取每日推荐歌单
+  getEveryDayMusicList: function() {
+    return `${baseUrl}/recommend/resource`
+  },
+  // 获取每日推荐歌曲
+  getEveryDayMusicList: function() {
+    return `${baseUrl}/recommend/songs`
+  },
+  // 获取喜欢的列表
+  getUserLikeList: function() {
+    return `${baseUrl}/likelist`
   }
 }

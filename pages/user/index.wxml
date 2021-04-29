@@ -1,33 +1,42 @@
 <!--pages/user/index.wxml-->
 <view class="home-view">
-  <!--用户详情部分-->
-  <view wx:if="{{needLogin}}} class="user-view">
-  网易云用户展示部分
+  <!-- 用户头像部分 -->
+  <view class="user-message-view">
+    <view class="user-message-image-wrap">
+      <image src="{{}}" class="user-message-image"></image>
+    </view>
+    <view class="user-message-name-wrap">
+      <text class="user-message-name">
+        {{}}
+      </text>
+    </view>
+    <text></text>
   </view>
 
-  <!--登录部分-->
-  <view class="content" >
-    <view class="content-image-wrap">
-      <image src="/assets/images/music.png" class="content-image"></image>
+  <!--每日推荐部分-->
+  <view class="recommend-view"> 
+    <view class="icon-every-view">
+      <icon class="iconfont icon-date user-icon-every"></icon>
+      <text>每日推荐歌曲</text>
     </view>
-    <view class="content-input-wrap">
-      <view class="input-wrap">
-        <icon class="iconfont icon-phone show-icon"></icon>
-        <input bindinput="inputPhone" auto-focus class="input" type="number" placeholder="输入手机号"/>
-      </view>
-      <view class="input-wrap">
-        <icon class="iconfont icon-password show-icon"></icon>
-        <input bindinput="inputPassword" class="input" type="text" password placeholder="输入密码"/>
-      </view>
-      <button class="login" bindtap="login">
-        登录
-      </button>
+    <view class="icon-every-view">
+      <icon class="iconfont icon-love user-icon-every"></icon>
+      <text>每日推荐歌单</text>
+    </view>
+    <view class="icon-every-view">
+      <icon class="iconfont icon-musiclist user-icon-every"></icon>
+      <text>我喜欢的音乐</text>
+    </view>
+    <view class="icon-every-view">
+      <icon class="iconfont icon-playing user-icon-every"></icon>
+      <text>当前播放列表</text>
     </view>
   </view>
 
-  <!-- 返回按钮-->
-  <view class="back-icon-view">
-    <icon class="iconfont icon-left back-icon"></icon>
+  <!--推荐视频-->
+  <view class="video-view">
+    <block>
+      <video src="http://vodkgeyttp9.vod.126.net/vodkgeyttp8/Zn6qhCE2_2200055998_hd.mp4?ts=1619687944&rid=030833AAA50ACD9D4541CE1585A8D992&rl=3&rs=BrELQvxckdbBGhtfHqZkJjuMkdOdAJYr&sign=03914a07c6744fb72f2e6cfdd96f1793&ext=kiVOtgt4qnf66tTSRBcGSm8Eb3%2FUPy2RZTDzp62KwCt%2BHKU7016lUwuzJw4eop3FhZj976AOQPP4zk13RSPRwiO9XltvS4v%2FSruCpmwK%2F1rWVZhSQPao%2B4s6mj6ZnD3Hxo8kQ1AmlbODC8tQxqrIp7bzNCe3KyiSII7O0lUGvZVOp9FrdDCq%2Ba6zvgfenGJMp0994O3STE1%2BomEPnLzUiZCyvTJ%2FdbE6Ed06QuZXCMqd%2BhcV3fETz%2Fl73MfxZO53"></video>
+    </block>
   </view>
 </view>
-

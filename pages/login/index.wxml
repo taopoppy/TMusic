@@ -1,0 +1,24 @@
+<!--pages/user/index.wxml-->
+<view class="home-view">
+
+  <!--登录部分-->
+  <view class="content">
+    <view class="content-image-wrap">
+      <image src="/assets/images/music.png" class="content-image"></image>
+    </view>
+    <view class="content-input-wrap">
+      <view class="input-wrap">
+        <icon class="iconfont icon-phone show-icon"></icon>
+        <input bindinput="inputPhone" auto-focus class="input" type="number" placeholder="输入手机号"/>
+      </view>
+      <view class="input-wrap">
+        <icon class="iconfont icon-password show-icon"></icon>
+        <input bindinput="inputPassword" class="input" type="text" password placeholder="输入密码"/>
+      </view>
+      <button class="login" bindtap="login">
+        登录
+      </button>
+    </view>
+  </view>
+</view>
+

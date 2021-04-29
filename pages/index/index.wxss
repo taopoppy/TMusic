@@ -42,6 +42,12 @@
   font-size: 60rpx;
 }
 
+.user-avatar {
+  height: 60rpx;
+  width: 60rpx;
+  border-radius: 30rpx;
+}
+
 .hot-search-swiper {
   width: 500rpx;
   height: 40rpx;

@@ -3,7 +3,8 @@
   <!--顶部搜索和个人中心-->
   <view class="top-view">
     <view class="user-icon-view" bindtap="goToUserSpace"> 
-      <icon class="iconfont icon-user user-icon"></icon>
+      <icon wx:if="{{userAvatar ===''}}"  class="iconfont icon-user user-icon"></icon>
+      <image wx:else class="user-avatar" src="{{userAvatar}}"></image>
     </view>
     <t-searchinput f-class="searchinputclass">
       <swiper

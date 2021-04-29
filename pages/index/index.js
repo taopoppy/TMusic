@@ -2,7 +2,7 @@
 // 获取应用实例
 const app = getApp()
 const getData = require('../../http/getData.js')
-const { userMessageHistory } = require('../../store/getStorageData.js')
+const { userMessageHistory,wangYiYunMessageHistory } = require('../../store/getStorageData.js')
 
 Page({
   data: {
@@ -14,7 +14,8 @@ Page({
     recommendData: [],
     // 热搜数据
     hotSearchData: [],
-    // 
+    // 用户头像
+    userAvatar: ""
   },
   async onLoad(option) {
     wx.showShareMenu({
@@ -42,11 +43,17 @@ Page({
     let newBannerData = await getData.getBannerData(app, force)
     let newRecommendData = await getData.getRecommendList(app, force)
     let newHotSearchData = await getData.getHotSearch(app, force)
+    let wangYiYunUser = wangYiYunMessageHistory.getWangYiYunMessage()
+    let tempUserAvatar = ""
+    if(wangYiYunUser && wangYiYunUser.content && wangYiYunUser.content.profile) {
+      tempUserAvatar = wangYiYunUser.content.profile.avatarUrl
+    }
 
     this.setData({
       bannerData: newBannerData.content,
       recommendData: newRecommendData.content,
       hotSearchData: newHotSearchData.content,
+      userAvatar: tempUserAvatar
     })
   },
 
@@ -103,15 +110,26 @@ Page({
             data.hasAuthorize = true
             userMessageHistory.UpdateUserMessage(data)
           }
-          // 跳转到网易云账号登录界面
-          wx.navigateTo({
-            url: '/pages/user/index',
-          })
+          
+          this.goWhere()
         }
       })
     }else {
+      this.goWhere()
+    }
+  },
+
+  // 选择性的跳转
+  goWhere() {
+    let wangYiYunUser = wangYiYunMessageHistory.getWangYiYunMessage()
+    if(!wangYiYunUser) {
       // 跳转到网易云账号登录界面
       wx.navigateTo({
+        url: '/pages/login/index',
+      })
+    } else {
+      // 跳转到用户中心界面
+      wx.reLaunch({
         url: '/pages/user/index',
       })
     }
