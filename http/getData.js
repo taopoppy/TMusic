@@ -8,6 +8,8 @@ const getSongDetailObj = require('./getDataFunc/getSongDetail.js')
 const getSearchResultObj = require('./getDataFunc/getSearchResult.js')
 const getOpenIdObj = require('./getDataFunc/getOpenId.js')
 const getWangYiYunUserObj = require('./getDataFunc/getWangYiYunUser.js')
+const getRecommendVideoListObj = require('./getDataFunc/getRecommendVideo.js')
+const getVideoCommentObj = require('./getDataFunc/getVideoComment.js')
 
 module.exports = {
   // 获取微信用户的openId
@@ -17,6 +19,8 @@ module.exports = {
   getBannerData: getBannerObj.func,
   // 获取推荐歌单信息
   getRecommendList: getRecommendListObj.func,
+  // 获取推荐视频信息
+  getRecommendVideoList: getRecommendVideoListObj.func,
   // 获取热搜信息
   getHotSearch: getHotSearch.func,
   // 获取歌单里歌曲信息
@@ -30,5 +34,7 @@ module.exports = {
   // 获取搜索结果
   getSearchResult: getSearchResultObj.func,
   // 获取网易云账号的信息（包括id和cookid）
-  getWangYiYunUser: getWangYiYunUserObj.func
+  getWangYiYunUser: getWangYiYunUserObj.func,
+  // 获取视频评论数据
+  getVideoComment: getVideoCommentObj.func
 }

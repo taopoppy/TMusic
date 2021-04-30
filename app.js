@@ -33,10 +33,15 @@ App({
       expires: 0,
       content: []
     },
+    // 推荐视频
+    recommendVideoList: {
+      expires: 0,
+      content: []
+    },
     // 热搜信息
     hotSearch: {
       expires: 0,
       content: []
-    }
+    },
   }
 })

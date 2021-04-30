@@ -1,0 +1,17 @@
+<!--pages/avi/index.wxml-->
+<view class="home-view">
+  <!--播放器部分-->
+  <view class="video-view">
+    <video src="{{videoInfo.data.urlInfo.url}}" autoplay class="video-class"></video>
+  </view>
+  <!--评论部分-->
+  <scroll-view
+    class="scroll-view-class"
+    style="height: {{commentViewHeight}}px"
+    scroll-y="{{true}}"
+  >
+    <block wx:for="{{videoComment}}" wx:key="index">
+      <view>{{item.content}} {{item.user.nickname}}</view>
+    </block>
+  </scroll-view>
+</view>

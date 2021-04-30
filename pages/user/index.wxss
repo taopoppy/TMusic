@@ -1,1 +1,141 @@
 /* pages/user/index.wxss */
+page{
+  height: 100%;
+  background: #f1f1f1;
+}
+.home-view {
+  background: #f1f1f1;
+}
+
+.user-message-view {
+  width: 750rpx;
+  height: 400rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  filter: blur(40rpx);
+  opacity: 0.4;
+}
+
+.user-message-masker {
+  position: absolute;
+  width: 100%;
+  height: 400rpx;
+  background-color: #333;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.under-masker {
+  position: absolute;
+  width: 100%;
+  height: 400rpx;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.user-message-image-wrap {
+  height: 200rpx;
+  width: 750rpx;
+  margin-bottom: 10rpx;
+  margin-top: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10rpx;
+  z-index: 10;
+}
+
+.user-message-image {
+  height: 180rpx;
+  width: 180rpx;
+  border-radius: 90rpx;
+  z-index: 10;
+}
+
+.user-message-name-wrap {
+  height: 30rpx;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+.user-message-name{
+  font-size: bolder;
+  color: #ffffff;
+  z-index: 10;
+}
+
+.recommend-view {
+  padding: 10rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.icon-every-view {
+  width: 180rpx;
+  height: 150rpx;
+  padding: 10rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-icon-every {
+  font-size: 80rpx;
+  color: salmon;
+  margin-bottom: 10rpx;
+}
+.icon-every-text {
+  font-size: 20rpx;
+  color: #9fa3a5
+}
+.tap-class {
+  background: #fff;
+}
+
+.video-view {
+  padding: 25rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.video-view::after {
+  content: '';
+  width: 300rpx;
+  height: 280rpx;
+}
+
+.video-contain-view {
+  width: 300rpx;
+  height: 280rpx;
+  display: flex;
+  flex-direction: column;
+  margin: 10rpx 25rpx;
+}
+
+.showImage-view {
+  width: 300rpx;
+  height: 200rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tap-play-icon {
+  font-size: 60rpx;
+  color: #fff;
+}
+.showTitle-view {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: smaller;
+}

@@ -6,7 +6,9 @@
     "pages/player/index",
     "pages/search/index",
     "pages/login/index",
-    "pages/user/index"
+    "pages/user/index",
+    "pages/video/index",
+    "pages/avi/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -62,5 +62,13 @@ module.exports = {
   // 获取喜欢的列表
   getUserLikeList: function() {
     return `${baseUrl}/likelist`
+  },
+  // 获取视频推荐列表
+  getRecommendVideList: function() {
+    return `${baseUrl}/video/timeline/recommend`
+  },
+  // 获取视频评论数据
+  getVideoComment: function() {
+    return `${baseUrl}/comment/video`
   }
 }
