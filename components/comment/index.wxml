@@ -1,0 +1,26 @@
+<view class="comment-home">
+  <!-- 评论作者信息 -->
+  <view class="author">
+    <view class="author-avatar-view">
+      <image src="{{comment.user.avatarUrl}}" class="author-avatar-image"></image>
+    </view>
+    <view class="author-name-view">
+      <text class="author-name-text">{{comment.user.nickname}}</text>
+    </view>
+    <view class="comment-like">
+      <view class="like-info-view"><icon class="iconfont icon-liker like-info"></icon></view>
+      <text class="comment-like-count">{{comment.likedCount}}</text>
+    </view>
+  </view>
+  <!--评论信息-->
+  <view class="content">
+    <view class="content-text-view">{{comment.content}}</view>
+    <view class="replied-view" wx:if="{{comment.beReplied.length > 0}}">
+      <block wx:for="{{comment.beReplied}}" wx:key="index">
+      <view class="replied">
+        <text class="replied-text"><text class="replied-name">{{item.user.nickname}}</text>: {{item.content}}</text>
+      </view>
+    </block>
+    </view>
+  </view>
+</view>

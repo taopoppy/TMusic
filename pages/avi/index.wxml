@@ -10,8 +10,9 @@
     style="height: {{commentViewHeight}}px"
     scroll-y="{{true}}"
   >
+    <view class="comment-title">热门评论</view>
     <block wx:for="{{videoComment}}" wx:key="index">
-      <view>{{item.content}} {{item.user.nickname}}</view>
+      <t-comment comment="{{item}}"></t-comment>
     </block>
   </scroll-view>
 </view>

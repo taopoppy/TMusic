@@ -17,3 +17,11 @@ page{
   width: 750rpx;
   height: 100%;
 }
+
+.comment-title {
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  padding-left: 30rpx;
+  color: #000000;
+}

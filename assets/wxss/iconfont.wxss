@@ -1,11 +1,11 @@
 @font-face {
-  font-family: 'taopoppy';  /* project id 1085003 */
-  src: url('//at.alicdn.com/t/font_1085003_0pw1jgrwwwk.eot');
-  src: url('//at.alicdn.com/t/font_1085003_0pw1jgrwwwk.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1085003_0pw1jgrwwwk.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1085003_0pw1jgrwwwk.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1085003_0pw1jgrwwwk.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1085003_0pw1jgrwwwk.svg#iconfont') format('svg');
+  font-family: 'taopoppy';  /* Project id 1085003 */
+  src: url('//at.alicdn.com/t/font_1085003_wozarq9zbsb.eot?t=1620272498199'); /* IE9 */
+  src: url('//at.alicdn.com/t/font_1085003_wozarq9zbsb.eot?t=1620272498199#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('//at.alicdn.com/t/font_1085003_wozarq9zbsb.woff2?t=1620272498199') format('woff2'),
+       url('//at.alicdn.com/t/font_1085003_wozarq9zbsb.woff?t=1620272498199') format('woff'),
+       url('//at.alicdn.com/t/font_1085003_wozarq9zbsb.ttf?t=1620272498199') format('truetype'),
+       url('//at.alicdn.com/t/font_1085003_wozarq9zbsb.svg?t=1620272498199#iconfont') format('svg');
 }
 
 /* 默认的图标样式 */
@@ -81,4 +81,9 @@
 /* 歌单图标 */
 .icon-musiclist::before {
   content: '\e636'
+}
+
+/* 点赞图标 */
+.icon-liker::before {
+  content: '\e605'
 }
