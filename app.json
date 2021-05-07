@@ -7,7 +7,6 @@
     "pages/search/index",
     "pages/login/index",
     "pages/user/index",
-    "pages/video/index",
     "pages/avi/index"
   ],
   "window": {

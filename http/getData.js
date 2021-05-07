@@ -14,7 +14,6 @@ const getVideoCommentObj = require('./getDataFunc/getVideoComment.js')
 module.exports = {
   // 获取微信用户的openId
   getOpenId: getOpenIdObj.func,
-
   // 获取轮播图的数据
   getBannerData: getBannerObj.func,
   // 获取推荐歌单信息

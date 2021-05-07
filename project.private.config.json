@@ -23,6 +23,12 @@
           "pathName": "pages/musiclist/index",
           "query": "5007871100",
           "scene": null
+        },
+        {
+          "name": "pages/player/index",
+          "pathName": "pages/player/index",
+          "query": "5007871100",
+          "scene": null
         }
       ]
     }

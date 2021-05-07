@@ -70,10 +70,10 @@
 .replied-view {
   margin-left: 100rpx;
   background: #dcdcdc;
-  padding: 20rpx;
+  padding: 10rpx;
 }
 .replied {
-  padding-right: 10rpx;
+  padding-left: 10rpx;
 }
 
 .replied-text {
