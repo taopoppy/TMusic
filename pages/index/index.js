@@ -86,6 +86,18 @@ Page({
 
   // 跳转到搜索页
   goToSearchPage:function(e) {
+    // 判断是否登录
+    let weixinUser = userMessageHistory.getUserMessage()
+    let wangyiyunUser = wangYiYunMessageHistory.getWangYiYunMessage()
+    if(!(weixinUser && wangyiyunUser)) {
+      wx.showToast({
+        title: '请先登录',
+        duration: 2000
+      })
+      return 
+    } 
+
+    // 登录之后可以进行搜索
     wx.navigateTo({
       url: `/pages/search/index?current=${this.data.bannerIndex}`,
     })

@@ -1,5 +1,5 @@
 const app = getApp()
-const { playingList } = require('../../store/getStorageData.js')
+const { playingList, userMessageHistory, wangYiYunMessageHistory } = require('../../store/getStorageData.js')
 // components/musiclist/index.js
 Component({
   /**
@@ -29,6 +29,16 @@ Component({
    */
   methods: {
     onSelect(event) {
+      // 判断是否登录
+      let weixinUser = userMessageHistory.getUserMessage()
+      let wangyiyunUser = wangYiYunMessageHistory.getWangYiYunMessage()
+      if(!(weixinUser && wangyiyunUser)) {
+        wx.showToast({
+          title: '请到首页登录',
+          duration: 2000
+        })
+        return 
+      } 
       // 事件源 事件处理函数 事件对象 事件类型
       // console.log(event.currentTarget.dataset.musicid)
       const ds = event.currentTarget.dataset

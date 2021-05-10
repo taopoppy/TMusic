@@ -4,7 +4,7 @@ const backgroundAudioManager = wx.getBackgroundAudioManager()
 const app = getApp()
 const utils = require('../../utils/util.js')
 const getData = require('../../http/getData.js')
-const { playingList, playHistory, userMessageHistory, wangYiYunMessageHistory } = require('../../store/getStorageData.js')
+const { playingList, playHistory } = require('../../store/getStorageData.js')
 
 Page({
   /**
@@ -23,17 +23,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function(options) {
-    // 判断是否登录
-    let weixinUser = userMessageHistory.getUserMessage()
-    let wangyiyunUser = wangYiYunMessageHistory.getWangYiYunMessage()
-    if(weixinUser && wangyiyunUser) {
       await this._loadMusicDetail(options.musicId)
-    } else {
-      wx.showToast({
-        title: '请到首页登录',
-        duration: 2000
-      })
-    }
   },
 
   // 初始化音乐信息，并且开始播放
